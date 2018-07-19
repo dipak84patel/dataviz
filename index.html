@@ -1,11 +1,79 @@
 <!DOCTYPE html>
 <html>
-<body bgcolor="#AED6F1">
 
-<h1><center>CS498 Data Visualization Final Project</center></h1>
+<head>
 
 
+  <title>CS498-Data Visualization Final Project</title>
+
+  <!-- Required stylesheet -->
+  <link rel="stylesheet" type="text/css" href="stylesheet.css">
+
+
+ 
+
+</head>
+
+<body>
+
+  <div class="slideshow-container">
+  
+    <h1 style="font-size:400%;"><u>U.S. GUN VIOLENCE 2013-2018</u></h1>
+    <h3 style="font-size:300%;">By Dipak Patel:</h1>
+
+      <div class="a">The United States experiences epidemic levels of gun violence, claiming over 30,000 lives
+        annually, according to the U.S. Centers for Disease Control and Prevention. For every person
+        who dies from a gunshot wound, two others are wounded. Every year, approximately 100,000 Americans 
+        are victims of gun violence. In addition to those who are killed or injured, there are countless 
+        others whose lives are forever changed by the deaths of and injured to their loved ones. With the help 
+        of <a href="https://www.kaggle.com/amitb1002/gun-violence-data-2013-2018/data">kaggle</a> where I received the data from. 
+        I was able to help visualize some of the data to answer these questions</div>
+        <div class="mySlides fade"></div>
+        <div class="numbertext">1 / 3</div>
+
+
+        <a href="#" class="previous round">&#8249;</a>
+        <a href="#" class="next round">&#8250;</a>
+      
+
+
+<!-- The dots/circles -->
+<div style="text-align:center">
+    <span class="dot" onclick="currentSlide(1)"></span> 
+    <span class="dot" onclick="currentSlide(2)"></span> 
+    <span class="dot" onclick="currentSlide(3)"></span> 
+  </div>
+
+
+
+  <script>
+      var slideIndex = 1;
+      showSlides(slideIndex);
+      
+      function plusSlides(n) {
+        showSlides(slideIndex += n);
+      }
+      
+      function currentSlide(n) {
+        showSlides(slideIndex = n);
+      }
+      
+      function showSlides(n) {
+        var i;
+        var slides = document.getElementsByClassName("mySlides");
+        var dots = document.getElementsByClassName("dot");
+        if (n > slides.length) {slideIndex = 1}    
+        if (n < 1) {slideIndex = slides.length}
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";  
+        }
+        for (i = 0; i < dots.length; i++) {
+            dots[i].className = dots[i].className.replace(" active", "");
+        }
+        slides[slideIndex-1].style.display = "block";  
+        dots[slideIndex-1].className += " active";
+      }
+      </script>
 
 
 </body>
-</html>
