@@ -77,6 +77,10 @@
       <div class="mySlides fade">
           <div class="numbertext">3 / 4</div>
           <h1 style="font-size:400%;"><u>Gun Violence Scatter Plot</u></h1>
+          <h3 style="font-size:150%;">This is a scatter-plot of NRA (National Rifle Asssociation)
+             Contributions vs Firearms Death per 100k people.
+          </h3>
+          <div id="filter"><b>States:</b></div>
           
           
           <script>
@@ -85,6 +89,11 @@
                 width = 960- margin.left - margin.right,
                 height =  500 - margin.top - margin.bottom;
                 
+
+
+
+
+              
                 /* 
                  * value accessor - returns the value to encode for a given data object.
                  * scale - maps value to a visual display encoding, such as a pixel position.
@@ -107,7 +116,11 @@
                 // setup fill color
                 var cValue = function(d) { return d.State;},
                     color = d3.scale.category10();
-    
+
+                    var dropDown = d3.select("#filter").append("select")
+                    .attr("name", "state-list"); 
+
+         
                 
                 var container = document.currentScript.parentNode;
     
@@ -134,6 +147,17 @@
                     d.Deaths = +d.Deaths;
                  //  console.log(d);
                   });
+
+
+
+                  var options = dropDown.selectAll("option")
+                    .data(data)
+                    .enter()
+                 .append("option");
+
+                options.text(function (d) { return d.State; })
+                .attr("value", function (d) { return d.State; });
+
                 
                 //   // don't want dots overlapping axis, so add in buffer to data domain
                    xScale.domain([d3.min(data, xValue)-1, d3.max(data, xValue)+1]);
@@ -186,6 +210,8 @@
                                .duration(500)
                                .style("opacity", 0);
                       });
+
+                      
                 
                   // draw legend
                   var legend = svg.selectAll(".legend")
@@ -212,11 +238,29 @@
                       .style("text-anchor", "end")
                       .attr("transform","rotate(-43)")
                       .text(function(d) { return d;})
+
+
+                  dropDown.on("change", function() {
+      var selected = this.value;
+      displayOthers = this.checked ? "inline" : "none";
+      display = this.checked ? "none" : "inline";
+
+
+      svg.selectAll(".dotted")
+          .filter(function(d) {return selected != d.State;})
+          .attr("display", displayOthers);
+          
+      svg.selectAll(".dotted")
+          .filter(function(d) {return selected == d.State;})
+          .attr("display", display);
+      });    
                 });
                 
                 </script>     
         
         </div>
+
+
     
       
       </div>
