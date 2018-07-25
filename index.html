@@ -68,16 +68,25 @@
 
         <div class="mySlides fade">
             <div class="numbertext">3 / 4</div>
+  
 
             <h1 style="font-size:400%;"><u>Gun Violence Scatter Plot</u></h1>
             <h3 style="font-size:150%;">This is a scatter-plot of NRA (National Rifle Asssociation)
              Contributions vs Firearms Death per 100k people.
           </h3>
-            <div id="filter"><b>States:</b>
-            </div>
+           
+          <div id="filter"><b>States:</b></div>
 
 
             <script>
+                (function iife(){
+                    var container = document.currentScript.parentNode;   
+                // add the tooltip area to the webpage
+                var tooltip = d3.select(container).append("div")
+                    .attr("class", "tooltip")
+                    .style("opacity", 0);
+                    
+
                 var margin = {
                         top: 20,
                         right: 20,
@@ -123,10 +132,7 @@
 
                 var dropDown = d3.select("#filter").append("select")
                     .attr("name", "state-list");
-
-
-
-                var container = document.currentScript.parentNode;
+               
 
 
                 // add the graph canvas to the body of the webpage
@@ -136,11 +142,7 @@
                     .append("g")
                     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-
-                // add the tooltip area to the webpage
-                var tooltip = d3.select(container).append("div")
-                    .attr("class", "tooltip")
-                    .style("opacity", 0);
+                
 
                 // load data
                 d3.csv("data.csv", function(error, data) {
@@ -270,6 +272,7 @@
                             .attr("display", display);
                     });
                 });
+                }())
             </script>
 
         </div>
@@ -278,14 +281,16 @@
         <div class="mySlides fade">
             <div class="numbertext">4 / 4</div>
             <h1 style="font-size:400%;"><u>Gun Violence Bar Chart</u></h1>
-
-
+          
             <script>
+                
+                (function iife(){
+                var container = document.currentScript.parentNode;
                 var margin = {
                         top: 40,
                         right: 20,
-                        bottom: 30,
-                        left: 40
+                        bottom: 100,
+                        left: 60
                     },
                     width = 960 - margin.left - margin.right,
                     height = 500 - margin.top - margin.bottom;
@@ -302,6 +307,7 @@
                     .scale(x)
                     .orient("bottom");
 
+                    
                 var yAxis = d3.svg.axis()
                     .scale(y)
                     .orient("left")
@@ -315,7 +321,7 @@
                     })
 
 
-                var container = document.currentScript.parentNode;
+                
 
                 var svg = d3.select(container).append("svg")
                     .attr("width", width + margin.left + margin.right)
@@ -336,7 +342,12 @@
                     svg.append("g")
                         .attr("class", "x axis")
                         .attr("transform", "translate(0," + height + ")")
-                        .call(xAxis);
+                        .call(xAxis)
+                        .selectAll("text")  
+                        .style("text-anchor", "end")
+                         .attr("dx", "-.8em")
+                          .attr("dy", ".15em")
+                        .attr("transform", "rotate(-90)");
 
                     svg.append("g")
                         .attr("class", "y axis")
@@ -366,6 +377,7 @@
                         .on('mouseout', tip.hide)
 
                 });
+                }())
 
                 function type(d) {
                     d.Deaths = +d.Deaths;
