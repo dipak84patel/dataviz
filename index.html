@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"> 
 <head>
 
     <title>CS498-Data Visualization Final Project</title>
@@ -80,7 +80,7 @@
 
             <script>
                 (function iife(){
-                    var container = document.currentScript.parentNode;   
+                
                 // add the tooltip area to the webpage
                 var tooltip = d3.select(container).append("div")
                     .attr("class", "tooltip")
@@ -134,7 +134,7 @@
                     .attr("name", "state-list");
                
 
-
+                var container = document.currentScript.parentNode;  
                 // add the graph canvas to the body of the webpage
                 var svg = d3.select(container).append("svg")
                     .attr("width", width + margin.left + margin.right)
@@ -345,7 +345,7 @@
                         .call(xAxis)
                         .selectAll("text")  
                         .style("text-anchor", "end")
-                         .attr("dx", "-.8em")
+                         .attr("dx", "-.7em")
                           .attr("dy", ".15em")
                         .attr("transform", "rotate(-90)");
 
