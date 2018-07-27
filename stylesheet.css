@@ -143,10 +143,12 @@ a:hover {
 
 /* first chart  */
 
+
+
 .axis path,.axis line {
   fill: none;
   stroke: #000;
-  shape-rendering: geometricPrecision;
+  shape-rendering: crispEdges;
 }
 
 
