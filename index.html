@@ -4,9 +4,7 @@
 <head lang="en">
 
     <title>CS498 Data Visualization Final Project</title>
-    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"> 
-
-
+    
 
     <!-- Required stylesheet -->
     <link rel="stylesheet" type="text/css" href="stylesheet.css">
@@ -15,21 +13,24 @@
     <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js" language="JavaScript"></script>
 
 
-
 </head>
 
 <body>
 
      
-    <div class="slideshow-container">
+    <div class="slideshow">
 
         <div class="mySlides fade">
             <div class="numbertext">1 / 4</div>
 
-            <h1 style="font-size:400%;"><u>U.S. GUN VIOLENCE 2013-2018</u></h1>
+            <h1 style="font-size:400%;"><u>U.S. GUN VIOLENCE 2010-2011</u></h1>
             <h3 style="font-size:300%;">By Dipak Patel:</h3>
 
-            <div class="a">The United States experiences epidemic levels of gun violence, claiming over 30,000 lives annually, according to the U.S. Centers for Disease Control and Prevention. For every person who dies from a gunshot wound, two others are wounded. Every year, approximately 100,000 Americans are victims of gun violence. In addition to those who are killed or injured, there are countless others whose lives are forever changed by the deaths of and injured to their loved ones. With the help of <a href="https://www.kaggle.com/amitb1002/gun-violence-data-2013-2018/data">kaggle</a> where I received the data from. I was able to help visualize some of the data to answer these questions</div>
+            <div class="a">The United States experiences epidemic levels of gun violence, claiming over 30,000 lives annually, according to the U.S. Centers for Disease Control and Prevention. 
+            For every person who dies from a gunshot wound, two others are wounded. Every year, approximately 100,000 Americans are victims of gun violence. 
+            In addition to those who are killed or injured, there are countless others whose lives are forever changed by the deaths of and injured to their loved ones. 
+            With the help of<a href="https://ucr.fbi.gov/crime-in-the-u.s/2011/crime-in-the-u.s.-2011/tables/table-20">FBI:UCR</a>and<a href="https://www.opensecrets.org/orgs/totals.php?id=d000000082&type=P&cycle=2012">opensecrets</a>where I received the data from. I was able to visualize the data and focus on intuition 
+            whether there is any corelation between NRA Contribution and Gun Violence Death </div>
 
         </div>
 
@@ -39,24 +40,26 @@
             <div class="numbertext">2 / 4</div>
 
             <h2>Hybrid Structure</h2>
-            <div class="b">This narrative visualization is in the form of interactive slideshow which allows audience to follow a story that I have created and dive into details at their leisure.
+            <div class="b">This narrative visualization is in the form of interactive slideshow which allows audience to follow a story that I have created and dive into details at their leisure. 
             </div>
 
             <h2>Scenes</h2>
             <div class="b">
-                In order to follow visual consistency in slideshow I have used external stylesheet customization. With the help of other add-ons and libraries I was able to maintain visual consistency throughout the presentation.
+                In order to follow visual consistency in slideshow I have used external stylesheet customization. With the help of other add-ons and libraries I was able to maintain visual consistency throughout the presentation. The layout and visual structures in these scenes make audience wonder the power of data visualization and explore further.
             </div>
 
 
             <h2>Annotations</h2>
             <div class="b">
-                As the user hover mouse over different charts they are able to see gun violence data by month, Number of people Killed, Number of people Injured, Number of Guns Involved. Similar trend of gun violence data can be viewed in different charts.
+                As the user hover mouse over different charts they are able to see gun violence data such as Number of people killed in different state vs NRA Contribution. Similar trend of gun violence data can be viewed in different chart which is based on percentage number of Gun Violence
+                Death in different state.
 
             </div>
 
             <h2>Parameters</h2>
             <div class="b">
-                I used parameters to filter the gun violence data by N Killed, N Injured, N of Gun Involved by different state. Different scenes can be visualized using different parameters.
+                In the scatter plot, I have used parameter to filter the gun violence death in different state. In the bar-graph, there is a sort button that sorts highest number of percentage deaths
+                by state in ascending order. As the user hover-over the bar chart they are also able to see the count of percentage number of deaths in each state.
 
             </div>
 
@@ -64,7 +67,7 @@
 
             <h2>Triggers</h2>
             <div class="b">
-                There are buttons linked to the change in annotations/scenes in order to visualize gun violence data from 2013-2018.
+                There are buttons linked to the change in annotations/scenes in order to visualize gun violence data from 2010-2011.
 
             </div>
         </div>
@@ -75,11 +78,8 @@
         <div class="mySlides fade">
             <div class="numbertext">3 / 4</div>
   
-
-            <h1 style="font-size:400%;"><u>Gun Violence Scatter Plot</u></h1>
-            <h3 style="font-size:150%;">This is a scatter-plot of NRA (National Rifle Asssociation)
-             Contributions vs Firearms Death per 100k people.
-          </h3>
+            <h1 style="font-size:225%;"><u>Gun Violence Scatter Plot</u></h1>
+            
            
           <div id="filter"><b>States:</b></div>
 
@@ -174,7 +174,7 @@
                         .text("Contributions");
                     //   // y-axis
                     svg.append("g")
-                        .attr("class", "y axis")
+                       
                         .call(yAxis)
                         .append("text")
                         .attr("class", "label")
@@ -250,100 +250,149 @@
                 });
                 }())
             </script>
-
+        <p style="font-size:150%;">This is a scatter-plot of NRA (National Rifle Asssociation)
+                Contributions vs Firearms Death per 100k people.</p>
         </div>
 
 
         <div class="mySlides fade">
             <div class="numbertext">4 / 4</div>
-            <h1 style="font-size:400%;"><u>Gun Violence Bar Chart</u></h1>
-          
+            <h1 style="font-size:225%;"><u>Gun Violence Bar Chart</u></h1>
+            <label><input type="checkbox"> Sort values</label>
+
             <script>
+                    (function iife(){
+                    var container = document.currentScript.parentNode;
+
+                 
+
+                    var margin = {top: 40,right: 20, bottom: 115, left: 60},
+                        width = 960 - margin.left - margin.right,
+                        height = 500 - margin.top - margin.bottom;
+                    var formatPercent = d3.format(".0%");
+
                 
-                (function iife(){
-                var container = document.currentScript.parentNode;
-                var margin = {
-                        top: 40,
-                        right: 20,
-                        bottom: 100,
-                        left: 60
-                    },
-                    width = 960 - margin.left - margin.right,
-                    height = 500 - margin.top - margin.bottom;
-                var formatPercent = d3.format(".0%");
-                var x = d3.scale.ordinal()
-                    .rangeRoundBands([0, width], .1);
-                var y = d3.scale.linear()
-                    .range([height, 0]);
-                var xAxis = d3.svg.axis()
-                    .scale(x)
-                    .orient("bottom");
+
+                    var x = d3.scale.ordinal()
+                        .rangeRoundBands([0, width], .1);
+
+                    var y = d3.scale.linear()
+                        .range([height, 0]);
+
+                    var xAxis = d3.svg.axis()
+                        .scale(x)
+                        .orient("bottom");
+                        
+                    var yAxis = d3.svg.axis()
+                        .scale(y)
+                        .orient("left")
+                        .tickFormat(formatPercent);
+
+                    var tip = d3.tip()
+                        .attr('class', 'd3-tip')
+                        .offset([-10, 0])
+                        .html(function(d) {
+                            return "<strong>Deaths:</strong> <span style='color:red'>" + d.Deaths + "</span>";
+                        })
                     
-                var yAxis = d3.svg.axis()
-                    .scale(y)
-                    .orient("left")
-                    .tickFormat(formatPercent);
-                var tip = d3.tip()
-                    .attr('class', 'd3-tip')
-                    .offset([-10, 0])
-                    .html(function(d) {
-                        return "<strong>Deaths:</strong> <span style='color:red'>" + d.Deaths + "</span>";
-                    })
-                
-                var svg = d3.select(container).append("svg")
-                    .attr("width", width + margin.left + margin.right)
-                    .attr("height", height + margin.top + margin.bottom)
-                    .append("g")
-                    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-                svg.call(tip);
-                d3.csv("data.csv", type, function(error, data) {
-                    x.domain(data.map(function(d) {
-                        return d.State;
-                    }));
-                    y.domain([0, d3.max(data, function(d) {
-                        return d.Deaths;
-                    })]);
-                    svg.append("g")
-                        .attr("class", "x axis")
-                        .attr("transform", "translate(0," + height + ")")
-                        .call(xAxis)
-                        .selectAll("text")  
-                        .style("text-anchor", "end")
-                         .attr("dx", "-.7em")
-                          .attr("dy", ".15em")
-                        .attr("transform", "rotate(-90)");
-                    svg.append("g")
-                        .attr("class", "y axis")
-                        .call(yAxis)
-                        .append("text")
-                        .attr("transform", "rotate(-90)")
-                        .attr("y", 6)
-                        .attr("dy", ".71em")
-                        .style("text-anchor", "end")
-                        .text("Number Killed");
+                    var svg = d3.select(container).append("svg")
+                        .attr("width", width + margin.left + margin.right)
+                        .attr("height", height + margin.top + margin.bottom)
+                        .append("g")
+                        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+                    svg.call(tip);
+    
+    
+                    
+                    d3.csv("data.csv", type, function(error, data) {
+
+                        data.forEach(function(d){
+                            d.Deaths=+d.Deaths;
+                        });
+
+                        x.domain(data.map(function(d) {return d.State; }));
+                        y.domain([0, d3.max(data, function(d) {return d.Deaths;})]);
+
+
+                     
+
+                        svg.append("g")
+                            .attr("class","x axis")
+                            .attr("transform", "translate(0," + height + ")")
+                            .call(xAxis)
+                            .selectAll("text")  
+                            .style("text-anchor", "start")
+                          
+                            .attr("dx", "-4em")
+                            .attr("dy", ".71em")
+                            .attr("transform", "rotate(-90)");
+
+                        svg.append("g")
+                            .call(yAxis)
+                            .append("text")
+                            .attr("transform", "rotate(-90)")
+                            .attr("y", 6)
+                            .attr("dy", ".71em")
+                            .style("text-anchor", "end")
+                            .text("Number Killed")
+                            ;
+
+                        svg.selectAll(".bar")
+                            .data(data)
+                            .enter().append("rect")
+                            .attr("class", "bar")
+                            .attr("x", function(d) {return x(d.State);})
+                            .attr("width", x.rangeBand())
+                            .attr("y", function(d) {return y(d.Deaths);})
+                            .attr("height", function(d) {return height - y(d.Deaths);})
+                            .on('mouseover', tip.show)
+                            .on('mouseout', tip.hide)
+
+
+
+                     d3.select("input").on("change", change);
+
+                    var sortTimeout = setTimeout(function() {
+                    d3.select("input").property("checked", true).each(change);
+                    }, 2000);
+
+                    function change() {
+                    clearTimeout(sortTimeout);
+
+                    // Copy-on-write since tweens are evaluated after a delay.
+                    var x0 = x.domain(data.sort(this.checked
+                        ? function(a, b) { return b.Deaths - a.Deaths; }
+                        : function(a, b) { return d3.ascending(a.State, b.State); })
+                        .map(function(d) { return d.State; }))
+                        .copy();
+
                     svg.selectAll(".bar")
-                        .data(data)
-                        .enter().append("rect")
-                        .attr("class", "bar")
-                        .attr("x", function(d) {
-                            return x(d.State);
-                        })
-                        .attr("width", x.rangeBand())
-                        .attr("y", function(d) {
-                            return y(d.Deaths);
-                        })
-                        .attr("height", function(d) {
-                            return height - y(d.Deaths);
-                        })
-                        .on('mouseover', tip.show)
-                        .on('mouseout', tip.hide)
-                });
-                }())
-                function type(d) {
-                    d.Deaths = +d.Deaths;
-                    return d;
-                }
-            </script>
+                        .sort(function(a, b) { return x0(a.State) - x0(b.State); });
+
+                    var transition = svg.transition().duration(750),
+                        delay = function(d, i) { return i * 50; };
+
+                    transition.selectAll(".bar")
+                        .delay(delay)
+                        .attr("x", function(d) { return x0(d.State); });
+
+                    transition.select(".x.axis")
+                        .call(xAxis)
+                        .selectAll("g")
+                        .delay(delay);
+                    }
+                               
+                    });
+    
+                     function type(d) {
+                        d.Deaths = +d.Deaths;
+                        return d;
+                    }
+                    }())
+                </script>
+
+<p style="font-size:150%;">This is a bar-chart for percentage number of deaths in different states in U.S.A.</p> 
+    
 
         </div>
        

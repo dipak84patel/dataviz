@@ -37,8 +37,8 @@ a:hover {
 
 * {box-sizing:border-box}
 
-/* Slideshow container */
-.slideshow-container {
+/* Slideshow*/
+.slideshow{
   max-width: 1000px;
   position: relative;
   margin: auto;
@@ -208,4 +208,14 @@ a:hover {
   margin: -1px 0 0 0;
   top: 100%;
   left: 0;
+}
+
+.x.axis path {
+  display: none;
+}
+
+label {
+  position: absolute;
+  top: 10px;
+  right: 10px;
 }
