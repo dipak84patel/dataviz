@@ -263,7 +263,7 @@
 
             <script>
                     (function iife(){
-                    var container = document.currentScript.parentNode;
+                    
 
                  
 
@@ -297,6 +297,7 @@
                             return "<strong>Deaths:</strong> <span style='color:red'>" + d.Deaths + "</span>";
                         })
                     
+                        var container = document.currentScript.parentNode;
                     var svg = d3.select(container).append("svg")
                         .attr("width", width + margin.left + margin.right)
                         .attr("height", height + margin.top + margin.bottom)
@@ -318,20 +319,21 @@
                      
 
                         svg.append("g")
+                        .attr("class","x axis")
                             .attr("transform", "translate(0," + height + ")")
-                            .call(xAxis)
-                            .selectAll("text") 
-                            .attr("y",-10)
+                            .call(xAxis)    
+                            .selectAll("text")   
+                            .attr("transform", "rotate(-90)")        
                             .attr("dy","0.71em")
-                            .attr("transform", "rotate(-90)")
-                            .attr("dx", "-4em");
+                            .attr("dx", "-4em")
+                            .attr("y",-10);
 
 
 
                         svg.append("g")
+                        .attr("class","y axis")
                             .call(yAxis)
-                            .append("text")
-                          
+                            .append("text")                         
                             .attr("transform", "rotate(-90)")
                             .attr("y", 6)
                             .attr("dy", ".51em")
@@ -394,7 +396,7 @@
                 </script>
 
 <p style="font-size:150%;">This is a bar-chart for number of deaths in different states of U.S.A. The highest number of deaths by state can be
-    viewed by using the sort button </p> 
+    viewed by using the sort button on top right. </p> 
     
 
         </div>
@@ -409,7 +411,7 @@
                 <h1 style="font-size:225%;"><u>References</u></h1>
                 <ol>
                     <li><a href="https://www.w3schools.com/howto/howto_js_slideshow.asp">HTML Slideshow W3Schools</a></li>
-                    <li><a href="http://bl.ocks.org/malcolm-decuire/a98aa2fd81865a6b34a0">Malcom Decuire's Scatter plot example</a></li>
+                    <li><a href="http://bl.ocks.org/weiglemc/6185069">Michael Wigle's Scatter plot example</a></li>
                     <li><a href="https://bl.ocks.org/mbostock/3885705">Bar Chart Example by Mike Bostock</a></li>
                     <li><a href="http://bl.ocks.org/Caged/6476579">Tool Tip Example Justin Palmer</a></li>
                 </ol>
